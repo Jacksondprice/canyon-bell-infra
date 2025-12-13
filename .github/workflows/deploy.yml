@@ -1,0 +1,14 @@
+name: deploy
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: us-east-1
+      AWS_ACCESS_KEY_ID: AKIA6Q6JGAQX8DIB6ZN6
+      AWS_SECRET_ACCESS_KEY: MqHG8Kh0i0flpAfUQO+dr8OH/xyjNhv4/ur03c1k
+    steps:
+      - uses: actions/checkout@v4
+      - run: aws s3 sync ./public s3://canyon-bell-infra-site --delete
